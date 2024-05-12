@@ -24,13 +24,17 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.5.7
-      - name: Terraform Init
-        run: terraform init
-      - name: Terraform Plan
-        run: terraform plan -out=tfplan
-      - name: Terraform Apply
-        if: github.event_name == 'push'
-        run: terraform apply tfplan
-      - name: Terraform Plan (Pull Request)
-        if: github.event_name == 'pull_request'
-        run: terraform plan
+      - name: 'Terraform Init'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 1.5.7
+          tf_actions_subcommand: 'init'
+          tf_actions_working_dir: "./soluciones/workload"
+          
+      - name: 'Terraform plan'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 1.5.7
+          tf_actions_subcommand: 'plan'
+          tf_actions_working_dir: "./soluciones/workload"
+        
