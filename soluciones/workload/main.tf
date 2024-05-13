@@ -12,7 +12,7 @@ provider "azurerm" {
 }
 
 module "create-vm" {
-  source = "github.com/stemdo-labs/terraform-exercises-icasado01-1/soluciones/modulo-weekly-exercise/modules/create-vm"
+  source = "github.com/stemdo-labs/terraform-exercises-icasado01-1/soluciones/modulo-weekly-exercise"
   resource_group_name = var.resource_group_name
   location = var.location
   virtual_machine = var.virtual_machine
